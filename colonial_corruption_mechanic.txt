@@ -1,0 +1,26 @@
+	namespace = colonial_corruption_mechanic
+	country_event = {
+	id = colonial_corruption_mechanic.1
+	title = "colonial_corruption_mechanic_1_title"
+	desc = "colonial_corruption_mechanic_1_desc"
+	set_variable = { which = colonial_corruption value = 0 }
+
+		option = {
+			name = "EVTOPTA.colonial_corruption_mechanic"
+			every_subject_country = {
+				limit = {
+					is_colonial_nation = yes
+						}
+					export_to_variable = { which = colonial_corruption value = total_development }
+					multiply_variable = { which = colonial_corruption = 0.005 }
+					every_subject_country = {
+						export_to_variable = { which = colonial_corruption value = total_development }
+						multiply_variable = { which = colonial_corruption value = 0.005 }
+						PREV = { change_variable = { which = colonial_corruption which = PREV } }
+								}
+					PREV = { change_variable = { which = colonial_corruption which = PREV } }
+
+					}
+					add_corruption = colonial_corruption
+			}
+	}
